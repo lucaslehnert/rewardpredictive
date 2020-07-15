@@ -7,6 +7,6 @@ PyYAML>=5.1
 plotly==4.4.1
 ipython[all]==7.10.1
 colorlover==0.3.0
-rlutils==0.0.2
+rlutils>=0.0.2
 Click==7.0
 sklearn

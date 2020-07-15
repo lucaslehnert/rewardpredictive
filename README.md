@@ -4,8 +4,13 @@
 # Reward-Predictive State Representations Generalize Across Task
 
 This repository contains the implementations to reproduce the simulation results of [Lehnert et al. 2020][paper].
+Please view the individual jupyter notebook files for instructions on how to reproduce all results.
 
-### Installation and Running Code
+## Obtaining Datasets and Reproduction Using Docker
+
+
+
+## Installation and Running Code
 
 To run the jupyter notebooks and reproduce the simulations, first clone the repository and install the required 
 dependencies:
@@ -28,7 +33,5 @@ All simulations can be reproduced by running the main script from the root direc
 ```
 python -m main -e [ExperimentName]
 ```
-
-Please view the individual jupyter notebook files for instructions on how to reproduce all results.
 
 [paper]: https://www.biorxiv.org/content/10.1101/653493v2
