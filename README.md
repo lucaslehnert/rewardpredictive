@@ -1,4 +1,5 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)
 ![pytest](https://github.com/lucaslehnert/rlutils/workflows/pytest/badge.svg)
 
 # Reward-Predictive State Representations Generalize Across Task
@@ -42,7 +43,7 @@ data will be copied on the host.
 
 ## Installation and Running Code
 
-To run the jupyter notebooks and reproduce the simulations, first clone the repository and install the required 
+To run the jupyter notebooks and reproduce the simulations, first clone the repository, create a python 3.7 virtual environment, and install the required 
 dependencies:
 
 ```
