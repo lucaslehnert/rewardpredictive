@@ -1,6 +1,6 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)
-![pytest](https://github.com/lucaslehnert/rlutils/workflows/pytest/badge.svg)
+![pytest](https://github.com/lucaslehnert/rewardpredictive/workflows/pytest/badge.svg)
 
 # Reward-Predictive State Representations Generalize Across Task
 
