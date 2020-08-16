@@ -5,7 +5,7 @@
 #
 import click
 
-import rewardpredictive as rl
+import rewardpredictive as rp
 
 EXPERIMENT_SET_NAME_LIST = [
     'ExperimentSetRepresentationEvaluation',
@@ -57,9 +57,9 @@ def main(experiment_set, best, alpha, beta):
 
     for experiment_set_name in experiment_set_name_list:
         if experiment_set_name in EXPERIMENT_SET_ALPHA_BETA_NAME_LIST:
-            es = rl.construct_experiment_set_by_name(experiment_set_name, alpha=alpha, beta=beta)
+            es = rp.construct_experiment_set_by_name(experiment_set_name, alpha=alpha, beta=beta)
         else:
-            es = rl.construct_experiment_set_by_name(experiment_set_name)
+            es = rp.construct_experiment_set_by_name(experiment_set_name)
         if best:
             es.run_best(12345)
         else:

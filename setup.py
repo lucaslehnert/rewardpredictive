@@ -15,7 +15,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/lucaslehnert/rewardpredictive",
-    packages=find_packages(),
+    packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -23,5 +23,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=req_pgks_list,
-    python_requires='==3.7'
+    python_requires='>=3.7'
 )
