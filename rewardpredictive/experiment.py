@@ -1435,6 +1435,7 @@ class ExperimentSetTaskSequenceRewardChangeQTransfer(ExperimentSetTaskSequenceRe
         return ExperimentSetTaskSequenceRewardChangeQTransfer(exp_list)
 
 
+# SF LEARNING
 class ExperimentTaskSequenceRewardChangeSFLearning(ExperimentTaskSequenceRewardChange):
     HP_LEARNING_RATE_SF = 'lr_sf'
     HP_LEARNING_RATE_REWARD = 'lr_r'
@@ -1467,7 +1468,6 @@ class ExperimentTaskSequenceRewardChangeSFLearning(ExperimentTaskSequenceRewardC
 
     def _reset_agent(self, agent):
         agent.reset(reset_sf=True, reset_w=True)
-
 
 class ExperimentTaskSequenceRewardChangeSFTransfer(ExperimentTaskSequenceRewardChangeSFLearning):
     def _reset_agent(self, agent):

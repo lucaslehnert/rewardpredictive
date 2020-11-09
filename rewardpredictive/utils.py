@@ -12,7 +12,7 @@ import tensorflow as tf
 
 def set_seeds(seed):
     rl.set_seeds(seed)
-    tf.set_random_seed(seed)
+    tf.random.set_seed(seed)
 
 
 def simulate_episodes(task, policy, transition_listener, num_episodes, max_steps=2000):

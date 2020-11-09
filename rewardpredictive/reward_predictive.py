@@ -19,7 +19,7 @@ from .utils import TableModel, SFLearning, lam_from_mat_visitation_counts, lam_m
 class LSFMatrixModel(object):
     def __init__(self, session, num_actions, num_states, num_features,
                  gamma=0.9,
-                 optimizer=tf.train.AdamOptimizer(1e-3),
+                 optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
                  alpha_r=1.,
                  alpha_sf=.001,
                  alpha_reg=0.,
