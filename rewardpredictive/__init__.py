@@ -3,32 +3,14 @@
 #
 # This source code is licensed under an MIT license found in the LICENSE file in the root directory of this project.
 #
-from . import belief_set
-from . import cycle_mdp_dataset
 from . import enumerate_partitions
 from . import evaluate
 from . import experiment
-from . import guitar
 from . import mdp
 from . import plot
-from . import reward_predictive
-from . import reward_maximizing
 from . import utils
 
-from .experiment import ExperimentSetCycleMDPDatasetPredictive
-from .experiment import ExperimentSetCycleMDPDatasetMaximizing
-from .experiment import ExperimentSetMazeQLearning
-from .experiment import ExperimentSetMazeQTransfer
-from .experiment import ExperimentSetMazeSFLearning
-from .experiment import ExperimentSetMazeSFTransfer
-from .experiment import ExperimentSetMazeMaximizingQLearning
-from .experiment import ExperimentSetMazePredictiveQLearning
-from .experiment import ExperimentSetMazePredictiveSFLearning
-from .experiment import ExperimentSetGuitarSFLearning
-from .experiment import ExperimentSetGuitarSFTransfer
-from .experiment import ExperimentSetGuitarRewardPredictive
 from .experiment import construct_experiment_set_by_name
-from .experiment import ExperimentSetRepresentationEvaluation
 from .experiment import SmallTaskSequenceName
 from .experiment import ExperimentSetTaskSequenceRewardChangeQLearning
 from .experiment import ExperimentSetTaskSequenceRewardChangeQTransfer
