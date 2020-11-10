@@ -11,8 +11,8 @@ from itertools import product
 from os import path as osp
 
 import numpy as np
-import rlutils as rl
 import yaml
+from collections import Generator
 
 from .evaluate import eval_reward_predictive
 from .evaluate import eval_total_reward
@@ -211,7 +211,76 @@ def eval_partition(task_seq, partition, repeats=5, rollout_depth=10, gamma=0.9, 
     return total_rew, rew_err
 
 
+class ExperimentTaskSequenceRandomRewardChange(ExperimentHParamParallel):
+    HP_EXPLORATION = 'exploration'
+    HP_TASK_SEQUENCE = 'task_sequence'
+    HP_NUM_EPISODES = 'episodes'
 
+    def __init__(self, *params, num_tasks=None, **kwargs):
+        """
+        Experiment task sequence for our random reward change experiments.
+
+        Biggest difference to the normal RewardChange class is how we yield tasks -
+        we use Python generators! Look below as to how that works.
+        We use generators here (instead of instantiating num_tasks environments) in order to
+        potentially generate an endless number of tasks (Don't do this yet things will break!).
+        :param params: params to pass in
+        :param kwargs: dict params to pass in
+        """
+        super().__init__(*params, **kwargs)
+        self.num_tasks = num_tasks or float('inf')
+        self.task_sequence = self._get_task_sequence()
+
+    def get_default_hparam(self) -> dict:
+        defaults = super().get_default_hparam()
+        defaults[ExperimentTaskSequenceRandomRewardChange.HP_REPEATS] = 20
+        defaults[ExperimentTaskSequenceRandomRewardChange.HP_TASK_SEQUENCE] = 'slight'
+        defaults[ExperimentTaskSequenceRandomRewardChange.HP_EXPLORATION] = 'optimistic'
+        defaults[ExperimentTaskSequenceRandomRewardChange.HP_NUM_EPISODES] = 200
+        return defaults
+
+    def _get_task_sequence(self) -> Generator:
+        """
+        We get a sequence of tasks generated on-the-fly.
+        The function returns a generator (https://wiki.python.org/moin/Generators) that
+        instantiates new environments when iterated over.
+        Each instantiation of the RandomRewardChange environment instantiates a new environment
+        with a randomized reward position.
+        """
+        num_tasks = 0
+        while num_tasks < self.num_tasks:
+            num_tasks += 1
+            yield RandomRewardChange()
+
+    def run_repeat(self, rep_idx: int) -> dict:
+        set_seeds(12345 + rep_idx)
+        episodes = self.hparam[ExperimentTaskSequenceRewardChange.HP_NUM_EPISODES]
+        agent = self._construct_agent()
+        ep_len_logger = rl.logging.LoggerEpisodeLength()
+        if self.hparam[ExperimentTaskSequenceRewardChange.HP_EXPLORATION] == 'optimistic':
+            policy = rl.policy.GreedyPolicy(agent)
+            transition_listener = rl.data.transition_listener(agent, ep_len_logger)
+        elif self.hparam[ExperimentTaskSequenceRewardChange.HP_EXPLORATION] == 'egreedy':
+            policy = rl.policy.EGreedyPolicy(agent, 1.0)
+            exp_schedule = rl.schedule.LinearInterpolatedVariableSchedule([0, 180], [1., 0.])
+            exp_schedule_listener = EGreedyScheduleUpdate(policy, exp_schedule)
+            transition_listener = rl.data.transition_listener(agent, exp_schedule_listener, ep_len_logger)
+        for task in self.task_sequence:
+            simulate_episodes(task, policy, transition_listener, episodes, max_steps=2000)
+            self._reset_agent(agent)
+
+        res_dict = {
+            'episode_length': np.reshape(ep_len_logger.get_episode_length(), [len(self.task_sequence), -1])
+        }
+        return res_dict
+
+    @abstractmethod
+    def _construct_agent(self):
+        pass
+
+    @abstractmethod
+    def _reset_agent(self, agent):
+        pass
 
 class ExperimentTaskSequenceRewardChange(ExperimentHParamParallel):
     HP_EXPLORATION = 'exploration'
