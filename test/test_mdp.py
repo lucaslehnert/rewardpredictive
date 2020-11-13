@@ -43,4 +43,10 @@ class TestGridWord3x3WithGoalsAndWalls(TestCase):
         self.assertEqual(next_state(2, 2, right), pt_to_state(2, 2))
 
 
+class TestRandomReward(TestCase):
+    """
+    TODO
+    """
+    def test(self):
+        raise NotImplementedError()
 

@@ -28,7 +28,12 @@ EXPERIMENT_SET_NAME_LIST = [
     'ExperimentSetTaskSequenceRewardChangeQTransfer',
     'ExperimentSetTaskSequenceRewardChangeSFLearning',
     'ExperimentSetTaskSequenceRewardChangeSFTransfer',
-    'ExperimentSetTaskSequenceRewardChangeSFTransferAll'
+    'ExperimentSetTaskSequenceRewardChangeSFTransferAll',
+    'ExperimentSetTaskSequenceRandomRewardChangeQLearning',
+    'ExperimentSetTaskSequenceRandomRewardChangeQTransfer',
+    'ExperimentSetTaskSequenceRandomRewardChangeSFLearning',
+    'ExperimentSetTaskSequenceRandomRewardChangeSFTransfer',
+    'ExperimentSetTaskSequenceRandomRewardChangeSFTransferAll'
 ]
 EXPERIMENT_SET_ALPHA_BETA_NAME_LIST = [
     'ExperimentSetMazeMaximizingQLearning',

@@ -5,18 +5,24 @@
 #
 from . import enumerate_partitions
 from . import evaluate
-from . import experiment
+from . import significant_experiment
 from . import mdp
 from . import plot
 from . import utils
 
-from .experiment import construct_experiment_set_by_name
-from .experiment import SmallTaskSequenceName
-from .experiment import ExperimentSetTaskSequenceRewardChangeQLearning
-from .experiment import ExperimentSetTaskSequenceRewardChangeQTransfer
-from .experiment import ExperimentSetTaskSequenceRewardChangeSFLearning
-from .experiment import ExperimentSetTaskSequenceRewardChangeSFTransfer
-from .experiment import ExperimentSetTaskSequenceRewardChangeSFTransferAll
+# from .significant_experiment import construct_experiment_set_by_name
+from .significant_experiment import SmallTaskSequenceName
+from .significant_experiment import ExperimentSetTaskSequenceRewardChangeQLearning
+from .significant_experiment import ExperimentSetTaskSequenceRewardChangeQTransfer
+from .significant_experiment import ExperimentSetTaskSequenceRewardChangeSFLearning
+from .significant_experiment import ExperimentSetTaskSequenceRewardChangeSFTransfer
+from .significant_experiment import ExperimentSetTaskSequenceRewardChangeSFTransferAll
+
+from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeQLearning
+from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeQTransfer
+from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeSFLearning
+from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeSFTransfer
+from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeSFTransferAll
 
 from .plot import plot_alpha_vs_belief_space_size
 from .plot import get_total_reward_for_reward_predictive
@@ -45,6 +51,9 @@ from .plot import plot_histogram_rand_mdp
 from .plot import plot_and_save_histogram_rand_mdp
 from .plot import plot_cycle_mdp_belief_space_size
 from .plot import plot_alpha_vs_total_reward
-from .plot import plot_avg_highest_count
+# from .plot import plot_avg_highest_count
 
 from .utils import set_seeds
+
+def construct_experiment_set_by_name(experiment_set_name, **kwargs):
+    return globals()[experiment_set_name].construct(**kwargs)

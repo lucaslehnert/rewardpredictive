@@ -16,7 +16,7 @@ import rlutils as rl
 from matplotlib.collections import PatchCollection
 from matplotlib.patches import Rectangle, Polygon
 
-from .cycle_mdp_dataset import load_cycle_mdp_dataset
+# from .cycle_mdp_dataset import load_cycle_mdp_dataset
 
 get_avg_ep_len = lambda exp: np.mean(np.mean(exp.episode_length, axis=-1), axis=-1)
 
@@ -193,54 +193,54 @@ def plot_alpha_vs_total_reward(experiment_set, hparam_alpha_beta, color_list=Non
 
 
 
-def plot_avg_highest_count(experiment_set, hparam_alpha_beta, figsize=(3, 2)):
-    plt.figure(figsize=figsize)
-    partition_idx_seq_list = load_cycle_mdp_dataset()[1]
-    gt_abs_count = np.sum(partition_idx_seq_list == 0, axis=-1)
-    gt_abs_count_m = np.mean(gt_abs_count, axis=-1)
-    gt_abs_count_e = sem(gt_abs_count, axis=-1)
-    plt.fill_between(
-        [-1, len(experiment_set.experiment_list) + 1],
-        y1=gt_abs_count_m+gt_abs_count_e,
-        y2=gt_abs_count_m-gt_abs_count_e,
-        color='k',
-        alpha=0.2
-    )
-    plt.bar(
-        [0],
-        [gt_abs_count_m],
-        yerr=[gt_abs_count_e],
-        color='w',
-        edgecolor='k',
-        label='Ground Truth\n(G.T.)'
-    )
-
-    alpha_values = experiment_set.get_hparam_values('alpha')
-    beta_values = experiment_set.get_hparam_values('beta')
-    get_exp = lambda a, b: experiment_set.get_experiment_list_by_hparam(hparam_alpha_beta(a, b))[0]
-    get_counts = lambda e: [np.max(c[-1]) for c in e.results['count']]
-    for i, (beta, color) in enumerate(zip(beta_values, ['C0', 'C1', 'C2'])):
-        counts = np.stack([get_counts(get_exp(alpha, beta)) for alpha in alpha_values])
-        counts_m = np.mean(counts, axis=-1)
-        counts_e = sem(counts, axis=-1)
-        xvalues = np.arange(len(alpha_values))
-        xvalues += i * len(alpha_values) + 1
-        if beta == np.inf:
-            beta_str = r'$\infty$'
-        elif beta == int(beta):
-            beta_str = '{}'.format(int(beta))
-        else:
-            beta_str = '{}'.format(beta)
-        plt.bar(xvalues, counts_m, yerr=counts_e, color=color, label=r'$\beta$={}'.format(beta_str))
-    alpha_val_str = ['{}'.format(a) for a in alpha_values]
-    alpha_val_str = ['G. T.'] + alpha_val_str + alpha_val_str + alpha_val_str
-    plt.xticks(range(len(alpha_val_str)), alpha_val_str, rotation='vertical')
-    plt.xlabel(r'$\alpha$ Value')
-    plt.xlim([-.8, len(experiment_set.experiment_list) + .8])
-    plt.ylabel('Average Highest Count')
-    plt.yticks([0, 5, 10, 15, 20])
-    plt.ylim([0, 27])
-    plt.legend(loc=9, ncol=4, frameon=False, handlelength=.8, handletextpad=.4, columnspacing=1.0)
+# def plot_avg_highest_count(experiment_set, hparam_alpha_beta, figsize=(3, 2)):
+#     plt.figure(figsize=figsize)
+#     partition_idx_seq_list = load_cycle_mdp_dataset()[1]
+#     gt_abs_count = np.sum(partition_idx_seq_list == 0, axis=-1)
+#     gt_abs_count_m = np.mean(gt_abs_count, axis=-1)
+#     gt_abs_count_e = sem(gt_abs_count, axis=-1)
+#     plt.fill_between(
+#         [-1, len(experiment_set.experiment_list) + 1],
+#         y1=gt_abs_count_m+gt_abs_count_e,
+#         y2=gt_abs_count_m-gt_abs_count_e,
+#         color='k',
+#         alpha=0.2
+#     )
+#     plt.bar(
+#         [0],
+#         [gt_abs_count_m],
+#         yerr=[gt_abs_count_e],
+#         color='w',
+#         edgecolor='k',
+#         label='Ground Truth\n(G.T.)'
+#     )
+#
+#     alpha_values = experiment_set.get_hparam_values('alpha')
+#     beta_values = experiment_set.get_hparam_values('beta')
+#     get_exp = lambda a, b: experiment_set.get_experiment_list_by_hparam(hparam_alpha_beta(a, b))[0]
+#     get_counts = lambda e: [np.max(c[-1]) for c in e.results['count']]
+#     for i, (beta, color) in enumerate(zip(beta_values, ['C0', 'C1', 'C2'])):
+#         counts = np.stack([get_counts(get_exp(alpha, beta)) for alpha in alpha_values])
+#         counts_m = np.mean(counts, axis=-1)
+#         counts_e = sem(counts, axis=-1)
+#         xvalues = np.arange(len(alpha_values))
+#         xvalues += i * len(alpha_values) + 1
+#         if beta == np.inf:
+#             beta_str = r'$\infty$'
+#         elif beta == int(beta):
+#             beta_str = '{}'.format(int(beta))
+#         else:
+#             beta_str = '{}'.format(beta)
+#         plt.bar(xvalues, counts_m, yerr=counts_e, color=color, label=r'$\beta$={}'.format(beta_str))
+#     alpha_val_str = ['{}'.format(a) for a in alpha_values]
+#     alpha_val_str = ['G. T.'] + alpha_val_str + alpha_val_str + alpha_val_str
+#     plt.xticks(range(len(alpha_val_str)), alpha_val_str, rotation='vertical')
+#     plt.xlabel(r'$\alpha$ Value')
+#     plt.xlim([-.8, len(experiment_set.experiment_list) + .8])
+#     plt.ylabel('Average Highest Count')
+#     plt.yticks([0, 5, 10, 15, 20])
+#     plt.ylim([0, 27])
+#     plt.legend(loc=9, ncol=4, frameon=False, handlelength=.8, handletextpad=.4, columnspacing=1.0)
 
 
 def plot_convergence_rate_comparison(ep_len_list, color_list, label_list, figsize=(10, 5)):  # pragma: no cover
