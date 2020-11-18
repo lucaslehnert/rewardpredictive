@@ -10,8 +10,6 @@ from glob import glob
 from itertools import product
 from os import path as osp
 
-import numpy as np
-import rlutils as rl
 import yaml
 
 from .evaluate import eval_reward_predictive
@@ -156,7 +154,7 @@ class ExperimentSet(object):
 
     def run(self, seed=12345):
         for i, exp in enumerate(self.experiment_list):
-            print('Running experiment {:2d}'.format(i))
+            print(f'Running experiment {i} out of {len(self.experiment_list)}')
             set_seeds(seed)
             exp.run()
             exp.save()
@@ -209,8 +207,6 @@ def eval_partition(task_seq, partition, repeats=5, rollout_depth=10, gamma=0.9, 
     rew_err = np.stack(rew_err).astype(dtype=np.float32)
 
     return total_rew, rew_err
-
-
 
 
 class ExperimentTaskSequenceRewardChange(ExperimentHParamParallel):
@@ -501,5 +497,4 @@ class ExperimentSetTaskSequenceRewardChangeSFTransferAll(ExperimentSetTaskSequen
         return ExperimentSetTaskSequenceRewardChangeSFTransferAll(exp_list)
 
 
-def construct_experiment_set_by_name(experiment_set_name, **kwargs):
-    return globals()[experiment_set_name].construct(**kwargs)
+

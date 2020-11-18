@@ -11,8 +11,8 @@ class ExperimentCycleMDPDatasetPredictive(TestCase):
         import rewardpredictive as rp
         import numpy as np
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentCycleMDPDatasetPredictive({
-            rp.experiment.ExperimentCycleMDPDatasetPredictive.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentCycleMDPDatasetPredictive({
+            rp.significant_experiment.ExperimentCycleMDPDatasetPredictive.HP_REPEATS: 2
         })
         exp.run()
         self.assertLessEqual(3., np.mean(exp.results['total_reward']))
@@ -22,8 +22,8 @@ class ExperimentCycleMDPDatasetPredictive(TestCase):
         self.assertTrue(np.all(np.array(count_sum) == 20))
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentCycleMDPDatasetPredictive({
-            rp.experiment.ExperimentCycleMDPDatasetPredictive.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentCycleMDPDatasetPredictive({
+            rp.significant_experiment.ExperimentCycleMDPDatasetPredictive.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -43,8 +43,8 @@ class ExperimentCycleMDPDatasetMaximizing(TestCase):
         import rewardpredictive as rp
         import numpy as np
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentCycleMDPDatasetMaximizing({
-            rp.experiment.ExperimentCycleMDPDatasetMaximizing.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentCycleMDPDatasetMaximizing({
+            rp.significant_experiment.ExperimentCycleMDPDatasetMaximizing.HP_REPEATS: 2
         })
         exp.run()
         self.assertLessEqual(3., np.mean(exp.results['total_reward']))
@@ -54,8 +54,8 @@ class ExperimentCycleMDPDatasetMaximizing(TestCase):
         self.assertTrue(np.all(np.array(count_sum) == 20))
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentCycleMDPDatasetMaximizing({
-            rp.experiment.ExperimentCycleMDPDatasetMaximizing.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentCycleMDPDatasetMaximizing({
+            rp.significant_experiment.ExperimentCycleMDPDatasetMaximizing.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -76,11 +76,11 @@ class TestExperimentRepresentationEvaluation(TestCase):
         import rewardpredictive as rp
         import numpy as np
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentRepresentationEvaluation()
+        exp = rp.significant_experiment.ExperimentRepresentationEvaluation()
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentRepresentationEvaluation()
+        exp_reprod = rp.significant_experiment.ExperimentRepresentationEvaluation()
         exp_reprod.run()
 
         self.assertTrue(np.all(exp.results['partition_list'][0] == exp_reprod.results['partition_list'][0]))
@@ -99,16 +99,16 @@ class TestExperimentMaze(TestCase):
     def test_qlearning(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazeQLearning({
-            rp.experiment.ExperimentMazeQLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeQLearning.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazeQLearning({
+            rp.significant_experiment.ExperimentMazeQLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeQLearning.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazeQLearning({
-            rp.experiment.ExperimentMazeQLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeQLearning.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazeQLearning({
+            rp.significant_experiment.ExperimentMazeQLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeQLearning.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -117,16 +117,16 @@ class TestExperimentMaze(TestCase):
     def test_qtransfer(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazeQTransfer({
-            rp.experiment.ExperimentMazeQTransfer.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeQTransfer.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazeQTransfer({
+            rp.significant_experiment.ExperimentMazeQTransfer.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeQTransfer.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazeQTransfer({
-            rp.experiment.ExperimentMazeQTransfer.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeQTransfer.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazeQTransfer({
+            rp.significant_experiment.ExperimentMazeQTransfer.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeQTransfer.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -135,16 +135,16 @@ class TestExperimentMaze(TestCase):
     def test_sflearning(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazeSFLearning({
-            rp.experiment.ExperimentMazeSFLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeSFLearning.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazeSFLearning({
+            rp.significant_experiment.ExperimentMazeSFLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeSFLearning.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazeSFLearning({
-            rp.experiment.ExperimentMazeSFLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeSFLearning.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazeSFLearning({
+            rp.significant_experiment.ExperimentMazeSFLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeSFLearning.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -153,16 +153,16 @@ class TestExperimentMaze(TestCase):
     def test_sftransfer(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazeSFTransfer({
-            rp.experiment.ExperimentMazeSFTransfer.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeSFTransfer.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazeSFTransfer({
+            rp.significant_experiment.ExperimentMazeSFTransfer.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeSFTransfer.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazeSFTransfer({
-            rp.experiment.ExperimentMazeSFTransfer.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeSFTransfer.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazeSFTransfer({
+            rp.significant_experiment.ExperimentMazeSFTransfer.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeSFTransfer.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -184,16 +184,16 @@ class TestExperimentMaze(TestCase):
     def test_maximizingq(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazeMaximizingQLearning({
-            rp.experiment.ExperimentMazeMaximizingQLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeMaximizingQLearning.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazeMaximizingQLearning({
+            rp.significant_experiment.ExperimentMazeMaximizingQLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeMaximizingQLearning.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazeMaximizingQLearning({
-            rp.experiment.ExperimentMazeMaximizingQLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazeMaximizingQLearning.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazeMaximizingQLearning({
+            rp.significant_experiment.ExperimentMazeMaximizingQLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazeMaximizingQLearning.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -205,17 +205,17 @@ class TestExperimentMaze(TestCase):
         import tensorflow as tf
         tf.reset_default_graph()
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazePredictiveQLearning({
-            rp.experiment.ExperimentMazePredictiveQLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazePredictiveQLearning.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazePredictiveQLearning({
+            rp.significant_experiment.ExperimentMazePredictiveQLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazePredictiveQLearning.HP_REPEATS: 2
         })
         exp.run()
 
         tf.reset_default_graph()
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazePredictiveQLearning({
-            rp.experiment.ExperimentMazePredictiveQLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazePredictiveQLearning.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazePredictiveQLearning({
+            rp.significant_experiment.ExperimentMazePredictiveQLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazePredictiveQLearning.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -227,17 +227,17 @@ class TestExperimentMaze(TestCase):
         import tensorflow as tf
         tf.reset_default_graph()
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentMazePredictiveSFLearning({
-            rp.experiment.ExperimentMazePredictiveSFLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazePredictiveSFLearning.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentMazePredictiveSFLearning({
+            rp.significant_experiment.ExperimentMazePredictiveSFLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazePredictiveSFLearning.HP_REPEATS: 2
         })
         exp.run()
 
         tf.reset_default_graph()
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentMazePredictiveSFLearning({
-            rp.experiment.ExperimentMazePredictiveSFLearning.HP_NUM_EPISODES: 2,
-            rp.experiment.ExperimentMazePredictiveSFLearning.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentMazePredictiveSFLearning({
+            rp.significant_experiment.ExperimentMazePredictiveSFLearning.HP_NUM_EPISODES: 2,
+            rp.significant_experiment.ExperimentMazePredictiveSFLearning.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -266,14 +266,14 @@ class TestExperimentGuitar(TestCase):
     def test_sflearning(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentGuitarSFLearning({
-            rp.experiment.ExperimentGuitarSFLearning.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentGuitarSFLearning({
+            rp.significant_experiment.ExperimentGuitarSFLearning.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentGuitarSFLearning({
-            rp.experiment.ExperimentGuitarSFLearning.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentGuitarSFLearning({
+            rp.significant_experiment.ExperimentGuitarSFLearning.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -282,14 +282,14 @@ class TestExperimentGuitar(TestCase):
     def test_sftransfer(self):
         import rewardpredictive as rp
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentGuitarSFTransfer({
-            rp.experiment.ExperimentGuitarSFTransfer.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentGuitarSFTransfer({
+            rp.significant_experiment.ExperimentGuitarSFTransfer.HP_REPEATS: 2
         })
         exp.run()
 
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentGuitarSFTransfer({
-            rp.experiment.ExperimentGuitarSFTransfer.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentGuitarSFTransfer({
+            rp.significant_experiment.ExperimentGuitarSFTransfer.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -300,15 +300,15 @@ class TestExperimentGuitar(TestCase):
         import tensorflow as tf
         tf.reset_default_graph()
         rp.set_seeds(12345)
-        exp = rp.experiment.ExperimentGuitarRewardPredictive({
-            rp.experiment.ExperimentGuitarRewardPredictive.HP_REPEATS: 2
+        exp = rp.significant_experiment.ExperimentGuitarRewardPredictive({
+            rp.significant_experiment.ExperimentGuitarRewardPredictive.HP_REPEATS: 2
         })
         exp.run()
 
         tf.reset_default_graph()
         rp.set_seeds(12345)
-        exp_reprod = rp.experiment.ExperimentGuitarRewardPredictive({
-            rp.experiment.ExperimentGuitarRewardPredictive.HP_REPEATS: 2
+        exp_reprod = rp.significant_experiment.ExperimentGuitarRewardPredictive({
+            rp.significant_experiment.ExperimentGuitarRewardPredictive.HP_REPEATS: 2
         })
         exp_reprod.run()
 
@@ -344,20 +344,20 @@ class TestExperimentTaskSequenceRewardChange(TestCase):
 
     def test_qlearning(self):
         import rewardpredictive as rp
-        self._test_exp_class(rp.experiment.ExperimentTaskSequenceRewardChangeQLearning)
+        self._test_exp_class(rp.significant_experiment.ExperimentTaskSequenceRewardChangeQLearning)
 
     def test_qtransfer(self):
         import rewardpredictive as rp
-        self._test_exp_class(rp.experiment.ExperimentTaskSequenceRewardChangeQTransfer)
+        self._test_exp_class(rp.significant_experiment.ExperimentTaskSequenceRewardChangeQTransfer)
 
     def test_sflearning(self):
         import rewardpredictive as rp
-        self._test_exp_class(rp.experiment.ExperimentTaskSequenceRewardChangeSFLearning)
+        self._test_exp_class(rp.significant_experiment.ExperimentTaskSequenceRewardChangeSFLearning)
 
     def test_sftransfer(self):
         import rewardpredictive as rp
-        self._test_exp_class(rp.experiment.ExperimentTaskSequenceRewardChangeSFTransfer)
+        self._test_exp_class(rp.significant_experiment.ExperimentTaskSequenceRewardChangeSFTransfer)
 
     def test_sftransfer_all(self):
         import rewardpredictive as rp
-        self._test_exp_class(rp.experiment.ExperimentTaskSequenceRewardChangeSFTransferAll)
+        self._test_exp_class(rp.significant_experiment.ExperimentTaskSequenceRewardChangeSFTransferAll)

@@ -115,8 +115,11 @@ class RandomRewardChange(rl.environment.TabularMDP):
         barrier_idx_list = []
         t_fn = generate_gridworld_transition_function_with_barrier(10, 10, slip_prob, barrier_idx_list)
 
-        start_list_idx = [pt_to_idx((0, 9), (10, 10))]
-        goal_list_idx = [pt_to_idx((0, 0), (10, 10))]
+        start_list_idx = [pt_to_idx((0, 0), (10, 10))]
+        self.possible_indices = np.arange(0, 10)
+        self.ignore_positions = [(0, 0)]
+
+        goal_list_idx = [pt_to_idx(self.sample_position(), (10, 10))]
 
         def r_fn(s_1, a, s_2):
             nonlocal goal_list_idx
@@ -129,6 +132,18 @@ class RandomRewardChange(rl.environment.TabularMDP):
                                                                         reward_matrix=True,
                                                                         dtype=np.float32)
         super().__init__(t_mat, r_mat, start_list_idx, goal_list_idx)
+
+    def sample_position(self):
+        """
+        Samples a random position, excluding a given list of positions.
+        :param exclude: list of 2-tuples, positions to exclude from sampling
+        :return: 2-tuple denoting a position.
+        """
+        pos = tuple(np.random.choice(self.possible_indices, size=2, replace=True))
+        if pos not in self.ignore_positions:
+            return pos
+
+        return self.sample_position()
 
     def __str__(self):
         return 'TaskBSignificantRewardChange'
