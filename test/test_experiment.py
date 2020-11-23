@@ -325,7 +325,7 @@ class TestExperimentTaskSequenceRewardChange(TestCase):
     def _test_exp_class(self, cls):
         from itertools import product
         import rewardpredictive as rp
-        for task_seq, exp in product(['slight', 'significant'], ['optimistic', 'egreedy']):
+        for task_seq, exp in product(['slight', 'significant'], ['egreedy']):
             hparam = {
                 cls.HP_NUM_EPISODES: 3,
                 cls.HP_REPEATS: 2,

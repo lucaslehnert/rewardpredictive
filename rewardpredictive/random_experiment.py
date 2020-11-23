@@ -155,7 +155,7 @@ class ExperimentSetTaskSequenceRandomRewardChangeQLearning(ExperimentSetTaskSequ
     def construct(cls, base_dir='./data'):
         exp_list = []
         lr_list = [.1, .3, .5, .7, .9]
-        for lr, task_seq, expl in product(lr_list, ['significant'], ['optimistic', 'egreedy']):
+        for lr, task_seq, expl in product(lr_list, ['significant'], ['egreedy']):
             exp_list.append(ExperimentTaskSequenceRandomRewardChangeQLearning({
                 ExperimentTaskSequenceRandomRewardChangeQLearning.HP_LEARNING_RATE: lr,
                 ExperimentTaskSequenceRandomRewardChangeQLearning.HP_TASK_SEQUENCE: task_seq,
@@ -181,7 +181,7 @@ class ExperimentSetTaskSequenceRandomRewardChangeQTransfer(ExperimentSetTaskSequ
     def construct(cls, base_dir='./data'):
         exp_list = []
         lr_list = [.1, .3, .5, .7, .9]
-        for lr, task_seq, expl in product(lr_list, ['significant'], ['optimistic', 'egreedy']):
+        for lr, task_seq, expl in product(lr_list, ['significant'], ['egreedy']):
             exp_list.append(ExperimentTaskSequenceRandomRewardChangeQTransfer({
                 ExperimentTaskSequenceRandomRewardChangeQTransfer.HP_LEARNING_RATE: lr,
                 ExperimentTaskSequenceRandomRewardChangeQTransfer.HP_TASK_SEQUENCE: task_seq,
@@ -252,7 +252,7 @@ class ExperimentSetTaskSequenceRandomRewardChangeSFLearning(ExperimentSetTaskSeq
     def construct(cls, base_dir='./data'):
         exp_list = []
         lr_list = [.1, .3, .5, .7, .9]
-        param_it = product(lr_list, lr_list, ['significant'], ['optimistic', 'egreedy'])
+        param_it = product(lr_list, lr_list, ['significant'], ['egreedy'])
         for lr_sf, lr_r, task_seq, expl in param_it:
             exp_list.append(ExperimentTaskSequenceRandomRewardChangeSFLearning({
                 ExperimentTaskSequenceRandomRewardChangeSFLearning.HP_LEARNING_RATE_SF: lr_sf,
@@ -281,7 +281,7 @@ class ExperimentSetTaskSequenceRandomRewardChangeSFTransfer(ExperimentSetTaskSeq
     def construct(cls, base_dir='./data'):
         exp_list = []
         lr_list = [.1, .3, .5, .7, .9]
-        it = product(lr_list, lr_list, ['significant'], ['optimistic', 'egreedy'])
+        it = product(lr_list, lr_list, ['significant'], ['egreedy'])
         for lr_sf, lr_r, task_seq, expl in it:
             exp_list.append(ExperimentTaskSequenceRandomRewardChangeSFTransfer({
                 ExperimentTaskSequenceRandomRewardChangeSFTransfer.HP_LEARNING_RATE_SF: lr_sf,
@@ -310,7 +310,7 @@ class ExperimentSetTaskSequenceRandomRewardChangeSFTransferAll(ExperimentSetTask
     def construct(cls, base_dir='./data'):
         exp_list = []
         lr_list = [.1, .3, .5, .7, .9]
-        it = product(lr_list, lr_list, ['significant'], ['optimistic', 'egreedy'])
+        it = product(lr_list, lr_list, ['significant'], ['egreedy'])
         for lr_sf, lr_r, task_seq, expl in it:
             exp_list.append(ExperimentTaskSequenceRewardChangeSFTransferAll({
                 ExperimentTaskSequenceRewardChangeSFTransferAll.HP_LEARNING_RATE_SF: lr_sf,
