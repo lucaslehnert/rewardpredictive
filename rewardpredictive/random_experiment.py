@@ -23,7 +23,7 @@ class ExperimentTaskSequenceRandomRewardChange(ExperimentHParamParallel):
     HP_TASK_SEQUENCE = 'task_sequence'
     HP_NUM_EPISODES = 'episodes'
 
-    def __init__(self, *params, num_tasks=20, **kwargs):
+    def __init__(self, *params, num_tasks=10, **kwargs):
 
         """
         Experiment task sequence for our random reward change experiments.
