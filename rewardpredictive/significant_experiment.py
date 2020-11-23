@@ -224,7 +224,7 @@ class ExperimentTaskSequenceRewardChange(ExperimentHParamParallel):
         defaults[ExperimentTaskSequenceRewardChange.HP_REPEATS] = 20
         defaults[ExperimentTaskSequenceRewardChange.HP_TASK_SEQUENCE] = 'slight'
         defaults[ExperimentTaskSequenceRewardChange.HP_EXPLORATION] = 'optimistic'
-        defaults[ExperimentTaskSequenceRewardChange.HP_NUM_EPISODES] = 200
+        defaults[ExperimentTaskSequenceRewardChange.HP_NUM_EPISODES] = 100
         return defaults
 
     def _get_task_sequence(self):

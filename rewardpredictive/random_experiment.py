@@ -44,7 +44,7 @@ class ExperimentTaskSequenceRandomRewardChange(ExperimentHParamParallel):
         defaults[ExperimentTaskSequenceRandomRewardChange.HP_REPEATS] = 20
         defaults[ExperimentTaskSequenceRandomRewardChange.HP_TASK_SEQUENCE] = 'slight'
         defaults[ExperimentTaskSequenceRandomRewardChange.HP_EXPLORATION] = 'optimistic'
-        defaults[ExperimentTaskSequenceRandomRewardChange.HP_NUM_EPISODES] = 200
+        defaults[ExperimentTaskSequenceRandomRewardChange.HP_NUM_EPISODES] = 100
         return defaults
 
     # def _get_task_sequence(self) -> Generator:
