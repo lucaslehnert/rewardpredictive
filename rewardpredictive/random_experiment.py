@@ -1,10 +1,13 @@
+import pickle
 import rlutils as rl
 import numpy as np
 from itertools import product
 from os import path as osp
 from abc import abstractmethod
 from tqdm import tqdm
-# from collections import Generator
+from pathlib import Path
+
+
 from .mdp import RandomRewardChange
 from .significant_experiment import (
     ExperimentSet,
@@ -14,6 +17,7 @@ from .significant_experiment import (
     _load_experiment_list
 )
 from .utils import set_seeds, simulate_episodes, SFLearning, EGreedyScheduleUpdate
+from definitions import ROOT_DIR
 
 
 class ExperimentTaskSequenceRandomRewardChange(ExperimentHParamParallel):
@@ -47,24 +51,26 @@ class ExperimentTaskSequenceRandomRewardChange(ExperimentHParamParallel):
         defaults[ExperimentTaskSequenceRandomRewardChange.HP_NUM_EPISODES] = 100
         return defaults
 
-    # def _get_task_sequence(self) -> Generator:
-    #     """
-    #     We get a sequence of tasks generated on-the-fly.
-    #     The function returns a generator (https://wiki.python.org/moin/Generators) that
-    #     instantiates new environments when iterated over.
-    #     Each instantiation of the RandomRewardChange environment instantiates a new environment
-    #     with a randomized reward position.
-    #     """
-    #     num_tasks = 0
-    #     while num_tasks < self.num_tasks:
-    #         num_tasks += 1
-    #         yield RandomRewardChange()
     def _get_task_sequence(self):
-        pbar = tqdm(range(self.num_tasks))
+        data_path = Path(ROOT_DIR, 'data', 'RandomRewardMaze')
+        file_path = data_path / 'maze.pkl'
         mdp_seq = []
-        for i in pbar:
-            mdp_seq.append(RandomRewardChange())
-            pbar.set_description(f"Creating env #{i}")
+        if data_path.is_dir() and file_path.is_file():
+            # We don't need to generate
+            print(f"Loading mazes from file {file_path}")
+            with open(file_path, 'rb') as f:
+                mdp_seq = pickle.load(f)
+        else:
+            pbar = tqdm(range(self.num_tasks))
+            for i in pbar:
+                mdp_seq.append(RandomRewardChange())
+                pbar.set_description(f"Creating env #{i}")
+
+            data_path.mkdir()
+            with open(file_path, 'wb') as f:
+                pickle.dump(mdp_seq, f)
+            print(f"Dumping mazes to file {file_path}")
+
         return mdp_seq
 
     def run_repeat(self, rep_idx: int) -> dict:
