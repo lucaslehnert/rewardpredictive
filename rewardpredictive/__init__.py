@@ -5,24 +5,24 @@
 #
 from . import enumerate_partitions
 from . import evaluate
-from . import significant_experiment
+from . import experiment
 from . import mdp
 from . import plot
 from . import utils
 
 # from .significant_experiment import construct_experiment_set_by_name
-from .significant_experiment import SmallTaskSequenceName
-from .significant_experiment import ExperimentSetTaskSequenceRewardChangeQLearning
-from .significant_experiment import ExperimentSetTaskSequenceRewardChangeQTransfer
-from .significant_experiment import ExperimentSetTaskSequenceRewardChangeSFLearning
-from .significant_experiment import ExperimentSetTaskSequenceRewardChangeSFTransfer
-from .significant_experiment import ExperimentSetTaskSequenceRewardChangeSFTransferAll
+from .experiment import SmallTaskSequenceName
+from .experiment import ExperimentSetTaskSequenceRewardChangeQLearning
+from .experiment import ExperimentSetTaskSequenceRewardChangeQTransfer
+from .experiment import ExperimentSetTaskSequenceRewardChangeSFLearning
+from .experiment import ExperimentSetTaskSequenceRewardChangeSFTransfer
+from .experiment import ExperimentSetTaskSequenceRewardChangeSFTransferAll
 
-from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeQLearning
-from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeQTransfer
-from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeSFLearning
-from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeSFTransfer
-from .random_experiment import ExperimentSetTaskSequenceRandomRewardChangeSFTransferAll
+from .experiment import ExperimentSetTaskSequenceRandomRewardChangeQLearning
+from .experiment import ExperimentSetTaskSequenceRandomRewardChangeQTransfer
+from .experiment import ExperimentSetTaskSequenceRandomRewardChangeSFLearning
+from .experiment import ExperimentSetTaskSequenceRandomRewardChangeSFTransfer
+from .experiment import ExperimentSetTaskSequenceRandomRewardChangeSFTransferAll
 
 from .plot import plot_alpha_vs_belief_space_size
 from .plot import get_total_reward_for_reward_predictive
